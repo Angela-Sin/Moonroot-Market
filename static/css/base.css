@@ -29,10 +29,6 @@ header {
     width: 1.5rem;
 }
 
-.logo-font {
-    text-transform: uppercase;
-}
-
 .main-logo-link {
     width: fit-content;
 }
@@ -93,6 +89,9 @@ header {
 
 /* fixed top navbar only on medium and up */
 @media (min-width: 992px) {
+    body {
+        padding-top: 164px; /* Apply padding for larger screens */
+    }
     .fixed-top-desktop-only {
         position: fixed;
         top: 0;
@@ -111,6 +110,17 @@ header {
         padding-top: 0; /* No padding on smaller screens */
     }
     header {
-        position: relative; /* Change to relative for mobile if needed */
+        position: fixed; /* Change to relative for mobile if needed */
+    }
+    .navbar-toggler {
+        display: block; /* Ensure hamburger is visible */
+    }
+
+    .navbar-collapse {
+        display: none; /* Initially hide navbar content */
+    }
+
+    .navbar-toggler.collapsed + .navbar-collapse {
+        display: block; /* Show navbar when toggled */
     }
 }
