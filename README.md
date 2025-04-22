@@ -150,3 +150,53 @@ This keyword research forms the foundation for Moonroot Market’s:
 
 
 
+# Key Page Planning (SEO & User Experience)
+
+##  Focus Page: **Home Page (Landing Page)**
+
+This is the main entry point for visitors searching for mystical and alternative wellness products. It introduces the brand, builds trust, and guides users toward discovering specific items such as crystals, potions, and mushroom-based offerings.
+
+---
+
+##  User Needs
+
+Visitors are likely looking for:
+- Authentic spiritual and wellness products (crystals, potions, magic mushrooms)
+- Guidance on how to use these products (rituals, healing, cleansing, etc.)
+- A trustworthy online store with good vibes, good reviews, and clear info
+- Fast & secure shopping experience
+- Unique or niche offerings not found on mainstream e-commerce sites
+
+---
+
+##  Goals of the Page
+
+- Clearly explain what Moonroot Market is about
+- Highlight bestsellers or featured collections
+- Quickly guide users to shop categories (Crystals, Potions, Mushrooms)
+- Build trust through clear branding, testimonials, secure payment info
+- Support SEO with targeted keywords and rich, relevant content
+- Link users to other useful pages (guides, rituals, about us, FAQs)
+
+---
+
+##  Features & Content to Include
+
+| Feature                           | Purpose                                                                 |
+|----------------------------------|-------------------------------------------------------------------------|
+|  Hero Banner                    | Eye-catching intro with a mystical message + a CTA ("Shop the Magic") |
+|  Product Category Previews     | Crystals, Potions, Mushrooms - easy navigation                         |
+|  Keyword-Rich Intro Text        | E.g. *"Shop healing crystals, herbal spell potions, and legal magic mushrooms online in the UK."* |
+|  Blog Previews or Ritual Guide | Educational content = value + SEO + internal linking                   |
+|  Testimonials or Reviews       | Builds trust and credibility                                           |
+|  Trust signals                 | Secure checkout badges, fast delivery notice, “About Us” snippet       |
+|  Featured Products             | Show bestsellers or new arrivals with relevant keywords                |
+|  Internal Links                | Link to: About Us, FAQ, Product Guides, Contact, Ritual Blogs          |
+|  External Links (optional)     | Blog links to credible sources like WebMD on psilocybin, etc.          |
+|  Mobile Friendly Layout        | Responsive design for usability and ranking                            |
+
+---
+
+
+
+
