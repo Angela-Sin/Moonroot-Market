@@ -14,7 +14,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300..900&family=Uncial+Antiqua&family=Winky+Rough:ital,wght@0,300..900&display=swap" rel="stylesheet">
-
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">  <!-- Font Awesome -->
     {% endblock %}
@@ -103,17 +102,6 @@
                 integrity="sha384-jG4vygCVv7t3tzlsDqEptvB+k3PejRynO82AKuGdJDZDo9ZzENeAmDRqn74k2pTn"
                 crossorigin="anonymous"></script>
     {% endblock %}
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggler = document.querySelector('.navbar-toggler');
-            const navbarCollapse = document.querySelector('.navbar-collapse');
-
-            toggler.addEventListener('click', function() {
-                navbarCollapse.classList.toggle('show');
-            });
-        });
-    </script>
 
     {% block postloadjs %}{% endblock %}
 </body>
