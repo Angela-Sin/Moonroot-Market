@@ -116,11 +116,4 @@ header {
         display: block; /* Ensure hamburger is visible */
     }
 
-    .navbar-collapse {
-        display: none; /* Initially hide navbar content */
-    }
-
-    .navbar-toggler.collapsed + .navbar-collapse {
-        display: block; /* Show navbar when toggled */
-    }
 }
