@@ -170,3 +170,15 @@ FREE_DELIVERY_THRESHOLD = 50
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CLOUDINARY_URL = os.environ.get('CLOUDINARY_URL')
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
+}
+
+MESSAGES_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

@@ -1,4 +1,5 @@
 {% load static %}
+
 <!doctype html>
 <html lang="en">
 
@@ -97,13 +98,21 @@
         {% endwith %}
         </header>
         
-    {% if messages %}
-    <div class="container mt-5 pt-5">
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-        {% endfor %}
-    </div>
-    {% endif %}
+        {% if messages %}
+        <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1055;">
+            {% for message in messages %}
+              {% if message.level == messages.ERROR %}
+                {% include 'includes/toasts/toast_error.html' %}
+              {% elif message.level == messages.WARNING %}
+                {% include 'includes/toasts/toast_warning.html' %}
+              {% elif message.level == messages.INFO %}
+                {% include 'includes/toasts/toast_info.html' %}
+              {% else %}
+                {% include 'includes/toasts/toast_success.html' %}
+              {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
 
     <main class="container mt-5 pt-5">
         {% block content %}{% endblock %}
@@ -115,6 +124,15 @@
                 crossorigin="anonymous"></script>
     {% endblock %}
 
-    {% block postloadjs %}{% endblock %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const toastElList = [].slice.call(document.querySelectorAll('.toast'));
+          toastElList.forEach(function (toastEl) {
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+          });
+        });
+      </script>
+      
 </body>
 </html>

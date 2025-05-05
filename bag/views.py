@@ -3,6 +3,7 @@ from django.conf import settings
 from .models import Bag
 from products.models import Product
 from decimal import Decimal
+from django.contrib import messages
 
 
 
@@ -52,6 +53,7 @@ def view_bag(request):
 def add_to_bag(request, item_id):
     """Add a specified quantity of an item to the bag in the session"""
     
+    product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     
@@ -59,8 +61,10 @@ def add_to_bag(request, item_id):
 
     if item_id in bag:
         bag[item_id] += quantity
+        messages.success(request, f'Updated {product.name} quantity to {bag[item_id]}')
     else:
         bag[item_id] = quantity
+        messages.success(request, f'Added {product.name} to your bag')
 
     request.session['bag'] = bag
     
@@ -70,11 +74,13 @@ def add_to_bag(request, item_id):
 def remove_from_bag(request, item_id):
     """Remove an item from the shopping bag"""
     
+    product = get_object_or_404(Product, pk=item_id)
     bag = request.session.get('bag', {})
     item_id = str(item_id)
 
     if item_id in bag:
         del bag[item_id]
+        messages.info(request, f'Removed {product.name} from your bag')
 
     request.session['bag'] = bag
     
