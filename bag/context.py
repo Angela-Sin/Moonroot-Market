@@ -14,21 +14,15 @@ def bag_contents(request):
     for item_id, quantity in bag.items():
         product = get_object_or_404(Product, id=item_id)
 
-        if hasattr(product, 'price_250g') and product.price_250g is not None:
-            total += quantity * product.price_250g
-        elif hasattr(product, 'price_1kg') and product.price_1kg is not None:
-            total += quantity * product.price_1kg
-        elif hasattr(product, 'price_ac') and product.price_ac is not None:
-            total += quantity * product.price_ac
-        else:
-            total += quantity * product.price
-
+        item_total = quantity * product.price
+        total += item_total
         product_count += quantity
 
         bag_items.append({
             'item_id': item_id,
             'quantity': quantity,
             'product': product,
+            'item_total': item_total,
         })
 
  

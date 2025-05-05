@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.conf import settings
 from .models import Bag
 from products.models import Product
+from decimal import Decimal
+
 
 
 def view_bag(request):
@@ -25,10 +28,22 @@ def view_bag(request):
             'item_total': item_total,
         })
 
+    if total < settings.FREE_DELIVERY_THRESHOLD:
+        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
+        free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
+    else:
+        delivery = 0
+        free_delivery_delta = 0
+    
+    grand_total = total + delivery
+
     context = {
         'bag_items': bag_items,
         'total': total,
         'product_count': product_count,
+        'delivery': delivery,
+        'free_delivery_delta': free_delivery_delta,
+        'grand_total': grand_total,
     }
 
     return render(request, 'bag/bag.html', context)
@@ -50,3 +65,16 @@ def add_to_bag(request, item_id):
     request.session['bag'] = bag
     
     return redirect(redirect_url)
+
+
+def remove_from_bag(request, item_id):
+    """Remove an item from the shopping bag"""
+    
+    bag = request.session.get('bag', {})
+
+    if item_id in bag:
+        del bag[item_id]
+
+    request.session['bag'] = bag
+    
+    return redirect('bag:view_bag')
