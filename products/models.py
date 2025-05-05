@@ -8,7 +8,7 @@ class Category(models.Model):
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.friendly_name if self.friendly_name else self.name
 
     def get_friendly_name(self):
         return self.friendly_name
@@ -30,12 +30,18 @@ class Product(models.Model):
     tool_type = models.CharField(max_length=100, null=True, blank=True)
 
     # Visuals
-    image_url = models.URLField(max_length=254, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
 
     # Pricing
     price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     rates = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
 
+    def clean(self):
+        if self.price is not None and self.price <= 0:
+            raise ValidationError('Price must be greater than zero.')
+
+        if self.rates is not None and self.rates <= 0:
+            raise ValidationError('Rates must be greater than zero.')
+        
     def __str__(self):
         return self.name
