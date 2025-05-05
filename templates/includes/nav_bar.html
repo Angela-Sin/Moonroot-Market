@@ -26,7 +26,7 @@
                     <input class="form-control mr-sm-2" name="s" placeholder="Search" aria-label="Search" />
                 </form>
 
-                <a class="nav-link {% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}" href="">
+                <a class="nav-link {% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}" href="{% url 'view_bag' %}">
                     <div class="text-center">
                         <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                         <p class="my-0">

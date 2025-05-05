@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container bg-white p-4 rounded shadow-sm mb-5">
+    <h2 class="logo-font mb-4">Shopping Bag</h2>
+    <hr>
+    {% if bag_items %}
+        <div class="table-responsive">
+            <table class="table align-middle text-center">
+                <thead class="table-light">
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in bag_items %}
+                        <tr>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>${{ item.product.price }}</td>
+                            <td>${{ item.subtotal|floatformat:2 }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr class="fw-bold">
+                        <td colspan="3" class="text-end">Total:</td>
+                        <td>${{ grand_total|floatformat:2 }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-end mt-4">
+            <a href="{% url 'checkout' %}" class="btn btn-success">Proceed to Checkout</a>
+        </div>
+    {% else %}
+        <p class="lead">Your bag is empty.</p>
+        <a href="{% url 'products' %}" class="btn btn-outline-dark">
+            <i class="fas fa-chevron-left"></i> Keep Shopping
+        </a>
+    {% endif %}
+</div>
+{% endblock %}
