@@ -57,7 +57,7 @@
                 
                 <div class="d-flex align-items-center ms-auto">
                     
-                    <form class="d-flex me-3" method="GET" action="">
+                    <form class="d-flex me-3" method="GET" action="{% url 'products' %}">
                         <input class="form-control me-2" type="search" name="q" placeholder="Search our site" aria-label="Search">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="fas fa-search"></i>
@@ -82,6 +82,18 @@
         
             </div>
         </nav>
+
+        <div class="bg-light border-bottom py-2">
+            <div class="container text-center">
+                <a href="{% url 'products' %}" class="btn btn-outline-secondary btn-sm me-2 mb-1">All Products</a>
+                {% for category in categories %}
+                    <a href="{% url 'products' %}?category={{ category.name }}" class="btn btn-outline-secondary btn-sm me-2 mb-1">
+                        {{ category.friendly_name }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        
         {% endwith %}
         </header>
         

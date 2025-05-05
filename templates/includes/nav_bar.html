@@ -1,0 +1,44 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg bg-white border-bottom fixed-top shadow-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand me-3" href="{% url 'home' %}">
+            <h2 class="logo-font text-success my-0"><strong>MOONROOT</strong> MARKET</h2>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav">
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="#">My Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Logout</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Login</a></li>
+                {% endif %}
+            </ul>
+
+            <div class="d-flex align-items-center ms-auto">
+                <form class="form-inline my-2 my-lg-0 me-3" method="GET" action="{% url 'products' %}">
+                    <input class="form-control mr-sm-2" name="s" placeholder="Search" aria-label="Search" />
+                </form>
+
+                <a class="nav-link {% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %}" href="">
+                    <div class="text-center">
+                        <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                        <p class="my-0">
+                            {% if grand_total %}
+                                ${{ grand_total|floatformat:2 }}
+                            {% else %}
+                                $0.00
+                            {% endif %}
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
