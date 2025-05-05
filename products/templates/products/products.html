@@ -29,19 +29,41 @@
 
         {% for product in products %}
             <div class="col-12 col-md-6 col-lg-4 mb-4">
-                <div class="card h-100">
+                <div class="card h-100 border-0 shadow-sm">
+                    <!-- Product Image -->
                     {% if product.image %}
                         <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                     {% elif product.image_url %}
                         <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
                     {% endif %}
-                    <div class="card-body">
+    
+                    <!-- Product Body -->
+                    <div class="card-body pb-0">
                         <h5 class="card-title">{{ product.name }}</h5>
                         <p class="card-text">{{ product.description|truncatechars:100 }}</p>
-                        <p class="card-text"><strong>Price:</strong> ${{ product.price }}</p>
-                        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">View Details</a>
                     </div>
-                </div>
+    
+                    <!-- Footer with price, category, and rating -->
+                    <div class="card-footer bg-white border-0">
+                        <p class="fw-bold text-success mb-1">Price: ${{ product.price }}</p>
+    
+                        {% if product.category %}
+                            <p class="mb-1 small">
+                                <i class="fas fa-tag text-muted"></i>
+                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                                    {{ product.category.friendly_name }}
+                                </a>
+                            </p>
+                        {% endif %}
+    
+                        {% if product.rates %}
+                            <p class="mb-0 small text-muted">
+                                <i class="fas fa-star text-warning me-1"></i>{{ product.rates }} / 5
+                            </p>
+                        {% endif %}
+    
+                        <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-primary btn-sm mt-2">View Details</a>
+                    </div>
             </div>
         {% endfor %}
     </div>
