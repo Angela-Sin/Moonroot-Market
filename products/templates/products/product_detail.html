@@ -1,15 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block page_header %}
-<div class="container header-container">
-    <div class="row">
-        <div class="col">
-            <h2 class="mt-4 text-white">{{ product.name }}</h2>
-        </div>
-    </div>
-</div>
-{% endblock %}
 
 {% block content %}
 <div class="container my-5">
@@ -26,17 +17,19 @@
         <div class="col-md-6">
             <h3>{{ product.name }}</h3>
             <p><strong>Price:</strong> ${{ product.price }}</p>
+
             {% if product.category %}
             <p class="small mt-1 mb-0">
-                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                <a href="{% url 'products' %}?category={{ product.category.name }}">
                     <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
                 </a>
             </p>
-{% endif %}
+            {% endif %}
 
-{% if product.rates %}
-    <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rates }} / 10</small>
-{% endif %}
+            {% if product.rates %}
+                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rates }} / 10</small>
+            {% endif %}
+            
             <p>{{ product.description }}</p>
 
             {% if product.magical_properties %}
@@ -51,12 +44,58 @@
             {% if product.tool_type %}
                 <p><strong>Tool Type:</strong> {{ product.tool_type }}</p>
             {% endif %}
-            {% if product.weight %}
-                <p><strong>Weight:</strong> {{ product.weight }}g</p>
-            {% endif %}
+            
+            <hr>
 
-            <a href="{% url 'products' %}" class="btn btn-secondary mt-3">Back to Products</a>
-        </div>
+            <form action="{% url 'add_to_bag' product.id %}" method="POST">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="quantity"><strong>Quantity:</strong></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn btn-outline-secondary" id="decreaseQuantity">-</button>
+                        </div>
+                        <input class="form-control" type="number" name="quantity" value="1" min="1" max="99" required id="quantityInput">
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-outline-secondary" id="increaseQuantity">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                <button type="submit" class="btn btn-primary mt-3">Add to Bag</button>
+            </form>
+
+        <a href="{% url 'products' %}" class="btn btn-secondary mt-3">Back to Products</a>
     </div>
 </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const decreaseButton = document.getElementById('decreaseQuantity');
+        const increaseButton = document.getElementById('increaseQuantity');
+        const quantityInput = document.getElementById('quantityInput');
+
+        // Decrease quantity
+        decreaseButton.addEventListener('click', function () {
+            let currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+            }
+        });
+
+        // Increase quantity
+        increaseButton.addEventListener('click', function () {
+            let currentValue = parseInt(quantityInput.value);
+            if (currentValue < 99) {
+                quantityInput.value = currentValue + 1;
+            }
+        });
+    });
+</script>
 {% endblock %}
