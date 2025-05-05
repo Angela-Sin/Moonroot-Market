@@ -71,6 +71,7 @@ def remove_from_bag(request, item_id):
     """Remove an item from the shopping bag"""
     
     bag = request.session.get('bag', {})
+    item_id = str(item_id)
 
     if item_id in bag:
         del bag[item_id]
