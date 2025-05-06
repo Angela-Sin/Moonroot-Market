@@ -3,7 +3,6 @@ html {
 }
 
 body {
-    background: url('/media/background.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #555;
     font-family: 'Lato', sans-serif;
@@ -115,10 +114,7 @@ header {
 }
 
 /* product_detail */
-body {
-    background: none; /* Remove any page background */
-    color: #333; 
-}
+
 
 .container {
     max-width: 100%; 

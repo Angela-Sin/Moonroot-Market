@@ -25,7 +25,8 @@
     <title>Moonroot Market {% block extra_title %}{% endblock %}</title>
 </head>
 
-<body>
+<body style="background: url('{% static "image/background.jpg" %}') no-repeat center center fixed; background-size: cover;">
+
     <header>
         {% with request.resolver_match.url_name as url_name %}
         <nav class="navbar navbar-expand-lg bg-white border-bottom fixed-top shadow-sm">
