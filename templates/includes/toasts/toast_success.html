@@ -1,10 +1,10 @@
-<div class="toast" data-bs-autohide="true">
-    <div class="toast-header">
-        <strong class="me-auto">Success</strong>
-        <small>Just now</small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="1500">
+    <div class="toast-header bg-success text-white">
+        <i class="fas fa-check-circle me-2"></i>
+        <strong class="me-auto">Success!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
-    <div class="toast-body text-success">
+    <div class="toast-body bg-white text-dark">
         {{ message }}
     </div>
 </div>

@@ -20,6 +20,31 @@
         </div>
     </div>
 
+    {% if messages %}
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1055;">
+        {% for message in messages %}
+          <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="{{ message.get_level_tag_display|escape }}">
+            <div class="toast-header">
+              {% if message.level == messages.ERROR %}
+                <i class="fas fa-exclamation-triangle text-danger me-2"></i>
+              {% elif message.level == messages.WARNING %}
+                <i class="fas fa-exclamation-circle text-warning me-2"></i>
+              {% elif message.level == messages.INFO %}
+                <i class="fas fa-info-circle text-info me-2"></i>
+              {% else %}
+                <i class="fas fa-check-circle text-success me-2"></i>
+              {% endif %}
+              <strong class="me-auto">Alert!</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+              {{ message }}
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <div class="row">
         <div class="col">
             {% if bag_items %}
@@ -102,4 +127,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toastElList = [].slice.call(document.querySelectorAll('.toast'));
+        toastElList.forEach(function (toastEl) {
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        });
+    });
+</script>
+
 {% endblock %}
