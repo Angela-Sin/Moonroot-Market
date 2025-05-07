@@ -80,7 +80,7 @@ def remove_from_bag(request, item_id):
 
     if item_id in bag:
         del bag[item_id]
-        messages.info(request, f'Removed {product.name} from your bag')
+        messages.warning(request, f'Removed {product.name} from your bag')
 
     request.session['bag'] = bag
     

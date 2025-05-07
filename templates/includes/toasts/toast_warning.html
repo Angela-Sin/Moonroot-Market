@@ -1,6 +1,8 @@
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
-    <div class="toast-header bg-warning text-white">
-        <i class="fas fa-exclamation-circle me-2"></i>
+
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true"
+     data-bs-delay="{% if message.level == messages.ERROR %}5000{% elif message.level == messages.WARNING %}3000{% elif message.level == messages.INFO %}2000{% else %}1500{% endif %}">
+    <div class="toast-header bg-warrning text-white">
+        <i class="fas fa-exclamation-triangle me-2"></i>
         <strong class="me-auto">Warning!</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
