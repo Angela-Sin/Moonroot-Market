@@ -52,6 +52,9 @@ INSTALLED_APPS = [
     'products',
     'bag',
     'checkout',
+
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +70,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'moonroot.urls'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -81,6 +86,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'bag.context.bag_contents',
+            ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
             ],
         },
     },
