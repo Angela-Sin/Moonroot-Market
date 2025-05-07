@@ -6,7 +6,6 @@ from decimal import Decimal
 from django.contrib import messages
 
 
-
 def view_bag(request):
     """A view to allow the user to see the contents of their bag"""
     
